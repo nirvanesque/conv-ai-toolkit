@@ -10,10 +10,13 @@ import pyjokes
 
 #Initialise resources
 listener = sr.Recognizer()
-engine = pyttsx3.init()
+engine = pyttsx3.init('espeak')
 voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[1].id)
-
+for voice in voices:
+    print(voice)
+engine.setProperty('voice', voices[11].id)
+engine.setProperty('rate', 180)
+engine.say('Welcome to the conversational AI toolkit')
 
 def talk(text):
     engine.say(text)
@@ -21,21 +24,22 @@ def talk(text):
 
 
 def take_command():
+    cmd = ''
     try:
         with sr.Microphone() as source:
             print('I am listening...')
             voice = listener.listen(source)
-            command = listener.recognize_google(voice)
-            command = command.lower()
-            if 'alexa' in command:
-                command = command.replace('alexa', '')
-                print(command)
+            cmd = listener.recognize_google(voice)
+            cmd = cmd.lower()
+            if 'doctor' in cmd:
+                cmd = cmd.replace('doctor', '')
+                print(cmd)
     except:
         pass
-    return command
+    return cmd
 
 
-def run_alexa():
+def run_convai():
     command = take_command()
     print(command)
     if 'play' in command:
@@ -61,4 +65,4 @@ def run_alexa():
 
 
 while True:
-    run_alexa()
+    run_convai()
