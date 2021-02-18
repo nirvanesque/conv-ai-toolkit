@@ -3,8 +3,8 @@
 
 # Installation of Python packages
 ## Create environment in Conda with the following command:
-'conda create --name sr python=3.8 --yes'
-'conda activate sr'
+conda create --name sr python=3.8 --yes
+conda activate sr
 
 ## Install Python package speechRecognition
 'pip install speechRecognition'
