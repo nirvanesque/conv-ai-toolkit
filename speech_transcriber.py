@@ -19,6 +19,8 @@ try:
     print("Setting minimum energy threshold to {}".format(r.energy_threshold))
     print("Start talking now>>")
     consult = ""
+    # Add logic here to start consultation when hotword/intent is spoken
+    # Intent can be something like: "start session"
     while True:
         print(">>")
         value = ""
@@ -35,7 +37,12 @@ try:
             value = "!!!"
             print("Couldn't request results from Wit.ai Speech Recognition service; {0}".format(e))
             
-        consult = consult + '\n' + value
-        print(">> {}".format(consult))
+        # Add logic here to stop consultation when hotword/intent is spoken
+        # Intent can be something like: "stop session"
+        # On that condition, print out session transcript
+        if 'stop session' in value:
+            print(">> {}".format(consult))
+        else :
+            consult = consult + '\n' + value
 except KeyboardInterrupt:
     pass
